@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.game-title {
+    background-color: purple;
+    color: white;
+    font-size: 48px;
+    text-align: center;
+}
+
+/* Loading screen css */
+.play-checkbox {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+
+    color: white;
+    font-size: 30px
+}
+
+.play-checkbox:has(#play:checked) + .load {
+    display: none;
+}
+
+.load {
+    position: absolute;
+    top: 5vh;
+    left: 0;
+    z-index: 1;
+
+    background-color: rgba(56, 43, 43, 0.63);
+    backdrop-filter: blur(5px);
+
+    width:100%;
+    height: 108vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 8s linear hide-load;
+}
+
+@keyframes hide-load {
+    100% {
+        z-index: -3;
+    }
+}
+
+.circle {
+    border-radius: 50%;
+    background-color: rgba(0, 0, 255, 0.596);
+
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+    animation-name: circle-rotate;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+
+    /* transition: 3s circle-rotate infinite; */
+}
+
+.slice {
+    background-color: rgba(255, 0, 0, 0.699);
+    /* background-color: rgba(255, 0, 0, 0); */
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    top:0;
+}
+
+.slice-1 {
+    border-radius: 100% 0% 0 0%;
+    margin:-5px;
+}
+
+.slice-2 {
+    border-radius: 100% 0% 0 0%;
+    margin:-5px;
+    transform: rotateY(180deg);
+    translate: 110px 0px;
+}
+
+.slice-3 {
+    border-radius: 100% 0% 0 0%;
+    margin:-5px;
+    transform: rotateX(180deg);
+    translate: 0px 110px;
+}
+
+.slice-4 {
+    border-radius: 100% 0% 0 0%;
+    margin:-5px;
+    transform: rotateZ(180deg);
+    translate: 110px 110px;
+}
+
+@keyframes circle-rotate {
+    0% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* game card css */
+.card-wrapper {
+    background-color: orangered;
+    padding: 24px;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    gap: 24px;
+
+    /* perspective: 1200px; */
+    z-index: 1;
+    
+}
+
+.card {
+    box-sizing: border-box;
+
+    background-color: rgba(0, 128, 0, 0.555);
+    width: 200px;
+    height: 250px;
+    border-radius: 25%;
+    border: 2px solid black;
+    /* padding: 24px; */
+
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card:hover {
+    transform: rotateY(180deg) translateZ(20px);
+}
+
+.fold,
+.unfold {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.fold {
+    width: 100%;
+    height: 100%;
+    border-radius: 25%;
+    border: 2px solid black;
+    padding: 24px;
+    background-color: red;
+    transform: rotateY(180deg) translateZ(20px);
+}
+
+
+.card-main {
+    display: flex;
+}
+
+.card-title {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.card-image-box {
+    width: 80%;
+    margin-left: 20%;
+}
+
+
